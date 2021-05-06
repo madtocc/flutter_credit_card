@@ -10,24 +10,25 @@ const Map<CardType, String> CardTypeIconAsset = <CardType, String>{
 };
 
 class CreditCardWidget extends StatefulWidget {
-  const CreditCardWidget({
-    Key? key,
-    required this.cardNumber,
-    required this.expiryDate,
-    required this.cardHolderName,
-    required this.cvvCode,
-    required this.showBackView,
-    this.animationDuration = const Duration(milliseconds: 500),
-    this.height,
-    this.width,
-    this.textStyle,
-    this.cardBgColor = const Color(0xff1b447b),
-    this.obscureCardNumber = true,
-    this.obscureCardCvv = true,
-    this.labelCardHolder = 'CARD HOLDER',
-    this.labelExpiredDate = 'MM/YY',
-    this.cardType,
-  }) : super(key: key);
+  const CreditCardWidget(
+      {Key? key,
+      required this.cardNumber,
+      required this.expiryDate,
+      required this.cardHolderName,
+      required this.cvvCode,
+      required this.showBackView,
+      this.animationDuration = const Duration(milliseconds: 500),
+      this.height,
+      this.width,
+      this.textStyle,
+      this.cardBgColor = const Color(0xff1b447b),
+      this.obscureCardNumber = true,
+      this.obscureCardCvv = true,
+      this.labelCardHolder = 'CARD HOLDER',
+      this.labelExpiredDate = 'MM/YY',
+      this.cardType,
+      this.margin = const EdgeInsets.all(16)})
+      : super(key: key);
 
   final String cardNumber;
   final String expiryDate;
@@ -44,6 +45,7 @@ class CreditCardWidget extends StatefulWidget {
 
   final String labelCardHolder;
   final String labelExpiredDate;
+  final EdgeInsetsGeometry margin;
 
   final CardType? cardType;
 
@@ -179,7 +181,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
         borderRadius: BorderRadius.circular(8),
         gradient: backgroundGradientColor,
       ),
-      margin: const EdgeInsets.all(16),
+      margin: widget.margin,
       width: widget.width ?? width,
       height: widget.height ??
           (orientation == Orientation.portrait ? height / 4 : height / 2),
@@ -273,7 +275,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
         : widget.cardNumber;
 
     return Container(
-      margin: const EdgeInsets.all(16),
+      margin: widget.margin,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         gradient: backgroundGradientColor,
